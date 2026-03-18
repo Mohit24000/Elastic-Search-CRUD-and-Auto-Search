@@ -1,5 +1,5 @@
 # Elastic-Search-CRUD-and-Auto-Search
-This is my Spring Boot Project of Performs CRUD and Auto search feature using Edge N_gram 
+This is my Spring Boot Project of Performs CRUD , Search and Auto search feature using Edge N_gram 
 
 # 🚀 Elasticsearch CRUD & Auto Search (Spring Boot)
 
@@ -7,7 +7,7 @@ This is my Spring Boot Project of Performs CRUD and Auto search feature using Ed
 
 This project is a **Spring Boot application** integrated with **Elasticsearch** to perform:
 
-* ✅ CRUD operations (Create, Read, Delete)
+* ✅ CRUD operations and Search Operation (Create, Read, Delete, Search)
 
 
 
