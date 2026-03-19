@@ -19,7 +19,7 @@ public class ElasticsearchConfig {
     public ElasticsearchClient elasticsearchClient() {
 
             RestClient restClient = RestClient.builder(
-                    new HttpHost("localhost", 9200, "http")   // ✅ ADD "http"
+                    new HttpHost("localhost", 9200, "http")
             ).build();
 
             RestClientTransport transport = new RestClientTransport(

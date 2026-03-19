@@ -1,11 +1,16 @@
 package com.ElasticSearch.CRUD.and.AutoSearch.service;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import com.ElasticSearch.CRUD.and.AutoSearch.Util.ESUtil;
 import com.ElasticSearch.CRUD.and.AutoSearch.model.PinTags;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -111,4 +116,19 @@ public class PinTagServiceImpl implements PinTagSrv {
             throw new RuntimeException("Search Failed " + e.getMessage());
         }
     }
+
+
+
+    public SearchResponse<PinTags> autoSuggestPinTags(String partialName) {
+        try {
+            Supplier<Query> supplier = ESUtil.createSupplierAutoSuggest(partialName);
+
+            SearchResponse<PinTags> response = elasticsearchClient.search(
+                    s -> s.index("pintags").query(supplier.get()).size(10), PinTags.class);return response;
+
+        } catch (IOException e) {
+            throw new RuntimeException("AutoSuggest query failed: " + e.getMessage());
+        }
+    }
+
 }
